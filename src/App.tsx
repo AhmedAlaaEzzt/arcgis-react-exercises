@@ -1,8 +1,12 @@
-import { ArcMapView } from "./ArcGIS-Components";
+import { ArcGraphicsLayer, ArcMapView } from "./ArcGIS-Components";
 import "./App.css";
 
 function App() {
-  return <ArcMapView />;
+  return (
+    <ArcMapView>
+      <ArcGraphicsLayer />
+    </ArcMapView>
+  );
 }
 
 export default App;

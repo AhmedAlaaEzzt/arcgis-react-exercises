@@ -1,2 +1,3 @@
-import './styles.css'
-export { ArcMapView } from './ArcMapView'
+import './styles.css';
+export { ArcMapView } from './ArcMapView';
+export { ArcGraphicsLayer } from './ArcGraphicsLayer';
