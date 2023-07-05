@@ -1,13 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 
 import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer.js";
-import Graphic from "@arcgis/core/Graphic";
-import Point from "@arcgis/core/geometry/Point";
-import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol";
 
-import { MapViewContext } from "../Contexts";
+import { GraphicsLayerContext, MapViewContext } from "../Contexts";
 
-export const ArcGraphicsLayer = () => {
+interface IArcGraphicsLayerProps {
+  children?: React.ReactNode;
+}
+
+export const ArcGraphicsLayer = (props: IArcGraphicsLayerProps) => {
+  const { children } = props;
   const { view } = useContext(MapViewContext);
 
   const [graphicsLayer, setGraphicsLayer] = useState<
@@ -17,22 +19,6 @@ export const ArcGraphicsLayer = () => {
   useEffect(() => {
     const _graphicsLayer = new GraphicsLayer();
     setGraphicsLayer(_graphicsLayer);
-
-    const point = new Point({
-      longitude: 55,
-      latitude: 25,
-    });
-
-    const simpleMarkerSymbol = new SimpleMarkerSymbol({
-      color: "red",
-    });
-
-    const graphicPoint = new Graphic({
-      geometry: point,
-      symbol: simpleMarkerSymbol,
-    });
-
-    _graphicsLayer.add(graphicPoint);
 
     return () => {
       console.log("ArcGraphicsLayer unmounting");
@@ -44,5 +30,13 @@ export const ArcGraphicsLayer = () => {
     view.map.add(graphicsLayer);
   }, [view, graphicsLayer]);
 
-  return <></>;
+  return (
+    <>
+      {graphicsLayer && (
+        <GraphicsLayerContext.Provider value={{ graphicsLayer }}>
+          {children}
+        </GraphicsLayerContext.Provider>
+      )}
+    </>
+  );
 };
