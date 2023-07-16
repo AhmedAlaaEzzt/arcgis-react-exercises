@@ -1,27 +1,22 @@
 import { useContext, useEffect, useState } from "react";
 
 import Graphic from "@arcgis/core/Graphic";
-import Point from "@arcgis/core/geometry/Point";
 import SimpleMarkerSymbol from "@arcgis/core/symbols/SimpleMarkerSymbol";
 
 import { GraphicsLayerContext } from "../Contexts";
 
-export const ArcGraphic = () => {
+export const ArcGraphic = (graphicProperties: __esri.GraphicProperties) => {
+  const { geometry } = graphicProperties;
   const { graphicsLayer } = useContext(GraphicsLayerContext);
   const [graphic, setGraphic] = useState<__esri.Graphic | undefined>();
 
   useEffect(() => {
-    const point = new Point({
-      longitude: 55,
-      latitude: 25,
-    });
-
     const simpleMarkerSymbol = new SimpleMarkerSymbol({
       color: "red",
     });
 
     const graphicPoint = new Graphic({
-      geometry: point,
+      geometry,
       symbol: simpleMarkerSymbol,
     });
 
