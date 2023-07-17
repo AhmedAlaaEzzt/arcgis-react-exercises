@@ -3,7 +3,9 @@ import {
   ArcGraphicsLayer,
   ArcMapView,
   createPoint,
+  createPolygon,
   createPolyline,
+  createSimpleFillSymbol,
   createSimpleLineSymbol,
   createSimpleMarkerSymbol,
 } from "./ArcGIS-ReactKit";
@@ -34,11 +36,28 @@ function App() {
     width: 3,
   });
 
+  const polygon = createPolygon({
+    rings: [
+      [
+        [54.99484672291234, 25.001548254997985],
+        [54.98948674805712, 24.99896433116001],
+        [55.00100499189463, 24.980978716284596],
+        [55.00568071464073, 24.983149533564287],
+        [54.99484672291234, 25.001548254997985],
+      ],
+    ],
+  });
+
+  const simpleFillSymbol = createSimpleFillSymbol({
+    color: "blue",
+  });
+
   return (
     <ArcMapView>
       <ArcGraphicsLayer>
         <ArcGraphic geometry={point} symbol={simpleMarkerSymbol} />
         <ArcGraphic geometry={polyline} symbol={simpleLineSymbol} />
+        <ArcGraphic geometry={polygon} symbol={simpleFillSymbol} />
       </ArcGraphicsLayer>
     </ArcMapView>
   );
