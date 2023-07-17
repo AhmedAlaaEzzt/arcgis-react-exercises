@@ -1,0 +1,1 @@
+export { createSimpleMarkerSymbol } from "./createSimpleMarkerSymbol";
