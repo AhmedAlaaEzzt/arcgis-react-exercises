@@ -1,3 +1,3 @@
 export { createMapView } from './createMapView'
-export { createPoint } from './geometry';
-export { createSimpleMarkerSymbol } from './symbols';
+export { createPoint, createPolyline } from './geometry';
+export { createSimpleMarkerSymbol, createSimpleLineSymbol } from './symbols';

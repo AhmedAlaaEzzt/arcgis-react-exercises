@@ -4,5 +4,4 @@ export { ArcGraphicsLayer } from './ArcGIS-Components';
 export { ArcGraphic } from './ArcGIS-Components';
 
 // ArcGIS-SDK
-export { createPoint } from './ArcGIS-SDK';
-export { createSimpleMarkerSymbol } from './ArcGIS-SDK';
+export { createPoint, createPolyline, createSimpleMarkerSymbol, createSimpleLineSymbol } from './ArcGIS-SDK';
