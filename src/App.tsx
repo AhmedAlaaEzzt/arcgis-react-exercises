@@ -10,6 +10,8 @@ import {
   createSimpleMarkerSymbol,
 } from "./ArcGIS-ReactKit";
 import "./App.css";
+import DropdownSelector from "./components/DropdownSelector";
+import { basemaps } from "./data";
 
 function App() {
   const point = createPoint({
@@ -53,13 +55,16 @@ function App() {
   });
 
   return (
-    <ArcMapView>
-      <ArcGraphicsLayer>
-        <ArcGraphic geometry={point} symbol={simpleMarkerSymbol} />
-        <ArcGraphic geometry={polyline} symbol={simpleLineSymbol} />
-        <ArcGraphic geometry={polygon} symbol={simpleFillSymbol} />
-      </ArcGraphicsLayer>
-    </ArcMapView>
+    <div className="position-relative">
+      <DropdownSelector defaultValue="Select Basemap" options={basemaps} />
+      <ArcMapView>
+        <ArcGraphicsLayer>
+          <ArcGraphic geometry={point} symbol={simpleMarkerSymbol} />
+          <ArcGraphic geometry={polyline} symbol={simpleLineSymbol} />
+          <ArcGraphic geometry={polygon} symbol={simpleFillSymbol} />
+        </ArcGraphicsLayer>
+      </ArcMapView>
+    </div>
   );
 }
 
