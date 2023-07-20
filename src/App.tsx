@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import {
   ArcGraphic,
   ArcGraphicsLayer,
@@ -14,6 +16,7 @@ import DropdownSelector from "./components/DropdownSelector";
 import { basemaps } from "./data";
 
 function App() {
+  const [basemap, setBasemap] = useState<string>("satellite");
   const point = createPoint({
     longitude: 55,
     latitude: 25,
@@ -56,8 +59,12 @@ function App() {
 
   return (
     <div className="position-relative">
-      <DropdownSelector defaultValue="Select Basemap" options={basemaps} />
-      <ArcMapView>
+      <DropdownSelector
+        defaultValue="Select Basemap"
+        options={basemaps}
+        onChange={setBasemap}
+      />
+      <ArcMapView mapProperties={{ basemap }}>
         <ArcGraphicsLayer>
           <ArcGraphic geometry={point} symbol={simpleMarkerSymbol} />
           <ArcGraphic geometry={polyline} symbol={simpleLineSymbol} />

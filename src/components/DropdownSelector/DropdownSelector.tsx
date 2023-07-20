@@ -3,9 +3,14 @@ import Form from "react-bootstrap/Form";
 interface IDropdownSelectorProps {
   defaultValue?: string;
   options: { value: string; label: string }[];
+  onChange?: (value: string) => void;
 }
 
-function DropdownSelector({ defaultValue, options }: IDropdownSelectorProps) {
+function DropdownSelector({
+  defaultValue,
+  options,
+  onChange,
+}: IDropdownSelectorProps) {
   return (
     <div
       className="position-absolute bottom-0 start-0 mx-3 my-3"
@@ -14,6 +19,7 @@ function DropdownSelector({ defaultValue, options }: IDropdownSelectorProps) {
       <Form.Select
         onChange={(e) => {
           console.log(e.target.value);
+          if (onChange) onChange(e.target.value);
         }}
       >
         {defaultValue && <option>{defaultValue}</option>}
